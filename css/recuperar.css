@@ -1,0 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url('https://t4.ftcdn.net/jpg/08/52/94/85/360_F_852948577_gduVbAPrSEGieuy1ZQlndbIlcbrfvLfr.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Roboto', sans-serif;
+
+}

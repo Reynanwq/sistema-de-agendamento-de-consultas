@@ -206,7 +206,7 @@ section {
 .cursor {
   display: inline-block;
   font-weight: bold;
-  color: #000; /* Ajuste a cor conforme necessário */
+  color: #000;
   animation: piscar 0.7s steps(2, start) infinite;
 }
 
