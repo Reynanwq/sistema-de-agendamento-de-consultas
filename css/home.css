@@ -143,6 +143,8 @@ section {
   color: #2c3e50;
 }
 
+
+
 .disponibilidade ul {
   list-style: none;
   padding: 0;
@@ -201,3 +203,15 @@ section {
   }
 }
 
+.cursor {
+  display: inline-block;
+  font-weight: bold;
+  color: #000; /* Ajuste a cor conforme necessário */
+  animation: piscar 0.7s steps(2, start) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
+}
