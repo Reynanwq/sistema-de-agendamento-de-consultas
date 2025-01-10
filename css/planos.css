@@ -1,0 +1,109 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: #258b62;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+.planos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 140px 20px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.plano {
+    background: white;
+    padding: 20px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plano.destaque {
+    transform: scale(1.05);
+}
+
+.plano:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.plano h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.plano p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.plano button {
+    background: linear-gradient(135deg, #33b873, #258b62);
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.plano button:hover {
+    background: linear-gradient(135deg, #29a465, #28aa76);
+    transform: scale(1.1);
+}
+
+.plano-escolhido {
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.valor {
+    font-size: 20px;
+    font-weight: bold;
+    color: #258b62;
+    margin-top: 10px;
+}

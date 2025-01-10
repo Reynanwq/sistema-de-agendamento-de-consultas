@@ -1,603 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: "Roboto", sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background-color: #f8f9fa;
-      }
+<html lang="pt-br">
 
-      * {
-        box-sizing: border-box;
-      }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão Clínica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/clientes.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
 
-      header {
-        background-color: #007bff;
-        color: #fff;
-        padding: 20px 0;
-        text-align: center;
-      }
+<body>
 
-      nav {
-        margin-top: 10px;
-      }
-
-      nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 16px;
-      }
-
-      nav a:hover {
-        text-decoration: underline;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .logo {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-      }
-
-      .empresa-name {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-      }
-
-      .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .carrosel-container {
-        background-color: #64adff;
-        padding: 20px 0;
-        width: 100%;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .carrosel {
-        position: relative;
-        width: 90%;
-        max-width: 400px;
-        overflow: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        margin-bottom: 40px;
-      }
-
-      .carrosel-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-
-      .carrosel-slide {
-        min-width: 100%;
-        box-sizing: border-box;
-      }
-
-      .carrosel-slide img {
-        width: 400px;
-        height: 400px;
-        display: block;
-      }
-
-      .carrosel-buttons {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-      }
-
-      .carrosel-button {
-        background: rgba(0, 0, 0, 0.5);
-        border: none;
-        color: white;
-        font-size: 18px;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 50%;
-        outline: none;
-      }
-
-      .carrosel-button:disabled {
-        background: rgba(0, 0, 0, 0.2);
-        cursor: not-allowed;
-      }
-
-      form {
-        width: 100%;
-        max-width: 700px;
-        background: linear-gradient(135deg, #ffffff, #f9f9f9);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      form:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-      }
-
-      form h2 {
-        font-size: 28px;
-        color: #333;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-
-      form p {
-        font-size: 16px;
-        color: #555;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-
-      form label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #333;
-      }
-
-      form input,
-      form textarea {
-        width: 100%;
-        padding: 12px 15px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #fafafa;
-        font-size: 16px;
-        color: #333;
-        transition: border-color 0.3s ease, background-color 0.3s ease;
-      }
-
-      form input:focus,
-      form textarea:focus {
-        border-color: #5793d3;
-        background-color: #fff;
-        outline: none;
-        box-shadow: 0 0 5px rgba(87, 147, 211, 0.5);
-      }
-
-      form button {
-        width: 100%;
-        padding: 12px 15px;
-        background-color: #5793d3;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-
-      form button:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-      }
-
-      form button:active {
-        background-color: #003a7a;
-        transform: translateY(0);
-      }
-
-      footer {
-        background-color: #5793d3;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        margin-top: 40px;
-      }
-
-      .planos {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        margin: 40px 20px;
-        padding: 20px;
-        background: linear-gradient(135deg, #eef3f7, #d9e6f2);
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .plano {
-        background: white;
-        padding: 20px 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        flex: 1;
-        max-width: 300px;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .plano.destaque {
-        border: 2px solid #5793d3;
-        transform: scale(1.05);
-      }
-
-      .plano:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .plano h3 {
-        font-size: 26px;
-        margin-bottom: 15px;
-        color: #333;
-      }
-
-      .plano p {
-        font-size: 16px;
-        margin-bottom: 20px;
-        color: #555;
-      }
-
-      .plano button {
-        background: linear-gradient(135deg, #5793d3, #0056b3);
-        color: white;
-        padding: 10px 25px;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
-      }
-
-      .plano button:hover {
-        background: linear-gradient(135deg, #0056b3, #003a7a);
-        transform: scale(1.1);
-      }
-
-      header {
-        background: linear-gradient(45deg, #5793d3, #0056b3);
-        color: white;
-        padding: 20px;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      header .logo {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      nav {
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-grow: 1;
-      }
-
-      nav a {
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s, transform 0.2s;
-      }
-
-      nav a:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-      }
-
-      .login-button {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        background-color: #133961;
-        border-radius: 5px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-
-      .login-button:hover {
-        background-color: #0faf37; /* Cor mais escura para o efeito hover */
-        transform: scale(
-          1.05
-        ); /* Aumenta um pouco o tamanho do botão ao passar o mouse */
-      }
-
-      .plano-escolhido {
-        padding: 10px;
-        font-size: 14px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-
-      .valor {
-        font-size: 20px;
-        font-weight: bold;
-        color: #5793d3;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
     <header>
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 20px;
-        "
-      >
-        <div style="display: flex; align-items: center">
-          <img
-            src="assets/logo.svg"
-            alt="Logo"
-            style="height: 80px; margin-right: 30px"
-          />
-          <h1 style="font-size: 24px; color: #fff">Nome</h1>
+        <div style="display: flex;justify-content: space-between;align-items: center;padding: 0 20px;">
+            <div style="display: flex; align-items: center">
+                <img src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000" alt="Logo"
+                    style="height: 80px; margin-right: 30px" />
+                <h1 style="font-size: 24px; color: #fff">MedLink</h1>
+            </div>
+
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="planos.html">Planos</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+
+            <a href="login.html" class="login-button">Login</a>
+
         </div>
-
-        <nav>
-          <a href="./index.html">Home</a>
-          <a href="#carrosel">Planos</a>
-          <a href="#sobre-nos">Sobre Nós</a>
-        </nav>
-
-        <a href="login.html" class="login-button">Login</a>
-      </div>
     </header>
 
-    <div class="main-content">
-      <section
-        id="sobre-nos"
-        style="
-          background-color: #d4e4f1;
-          padding: 40px 20px;
-          text-align: center;
-          border-radius: 12px;
-          margin: 40px auto;
-          max-width: 800px;
-        "
-      >
-        <h2>Sobre Nós</h2>
-        <p style="font-size: 18px; color: #555; margin-top: 15px">
-          Somos uma empresa especializada em soluções de software para gestão de
-          agendamentos e consultas. Nosso foco é transformar a maneira como
-          clínicas e consultórios organizam e otimizam seus processos de
-          agendamento, oferecendo uma plataforma intuitiva e eficiente. Com
-          tecnologia de ponta e compromisso com a inovação, buscamos
-          proporcionar uma experiência excepcional tanto para os gestores quanto
-          para os pacientes, tornando o processo de agendamento mais ágil,
-          seguro e acessível.
-        </p>
-      </section>
-      <section
-        id="sobre-agendamento"
-        style="text-align: center; margin: 20px 0; padding: 20px"
-      ></section>
-      <div class="carrosel-container">
-        <h2>Simplifique o Agendamento na Sua Clínica</h2>
-        <div id="carrosel" class="carrosel">
-          <div class="carrosel-track">
-            <div class="carrosel-slide">
-              <img src="./assets/img1.webp" alt="Image 1" />
+    <section>
+        <div class="flex-container">
+            <div class="left">
+                <h2 id="titulo">Gestão inteligente da sua clínica</h2>
+                <p>Com nosso sistema de gestão, você tem controle total sobre agendamentos, prontuários, estoque de
+                    medicamentos e muito mais. Aumente a eficiência da sua clínica e ofereça um atendimento de qualidade
+                    aos seus pacientes.</p>
             </div>
-            <div class="carrosel-slide">
-              <img src="./assets/img2.jpeg" alt="Image 2" />
+            <div class="right">
+                <img src="./assets/dermatologia.jpg" alt="Imagem do Software">
             </div>
-            <div class="carrosel-slide">
-              <img src="./assets/img3.jpg" alt="Image 3" />
+        </div>
+    </section>
+
+    <section class="estatisticas">
+        <div>
+            <h2>500+</h2>
+            <p>Profissionais de Saúde</p>
+        </div>
+        <div>
+            <h2>1200+</h2>
+            <p>Pacientes Ativos</p>
+        </div>
+        <div>
+            <h2>1500+</h2>
+            <p>Agendamentos Realizados</p>
+        </div>
+        <div>
+            <h2>50+</h2>
+            <p>Unidades Atendidas</p>
+        </div>
+    </section>
+
+    <div class="clientes-div">
+        <h2>Alguns Clientes MedLink</h2>
+        <div class="clientes-container">
+            <div class="cliente">
+                <img src="assets/hospital1" />
+                <h3>Hospital da Bahia</h3>
+                <p>Referência em tratamentos avançados para doenças cardíacas.</p>
             </div>
-          </div>
-          <div class="carrosel-buttons">
-            <button class="carrosel-button prev">&#10094;</button>
-            <button class="carrosel-button next">&#10095;</button>
-          </div>
+            <div class="cliente">
+                <img src="assets/hospital2.webp" />
+                <h3>Hospital São Rafael</h3>
+                <p>Centro médico renomado, oferecendo cuidados especializados em diversas áreas..</p>
+            </div>
+            <div class="cliente">
+                <img src="assets/hospital3.png" />
+                <h3>Clínicas Clivale</h3>
+                <p>Rede de clínicas médicas com diversas especialidades.</p>
+            </div>
+            <div class="cliente">
+                <img src="assets/hospital4.jpeg" />
+                <h3>Docctor Med</h3>
+                <p>Oferece cuidados médicos personalizados para crianças e adolescentes, com uma abordagem focada na saúde integral.</p>
+            </div>
+            <div class="cliente">
+                <img src="assets/hospital5.jpg" />
+                <h3>GastroCentro</h3>
+                <p>Hospital de excelência no diagnóstico e tratamento de doenças gastrointestinais.p>
+            </div>
+            <div class="cliente">
+                <img src="assets/hospital6.jpeg" />
+                <h3>Clínica Vida</h3>
+                <p>Clínica médica que oferece atendimento em diversas especialidades.</p>
+            </div>
         </div>
-      </div>
-
-      <!-- Seção de planos -->
-      <section class="planos">
-        <div class="plano destaque">
-          <h3>Mensal</h3>
-          <p>Plano mensal com todos os recursos para sua clínica.</p>
-          <p class="valor">R$ 59,90</p>
-          <button onclick="window.location.href='assinar.html';">
-            Assinar
-          </button>
-        </div>
-        <div class="plano destaque">
-          <h3>Semestral</h3>
-          <p>Plano semestral com desconto especial.</p>
-          <p class="valor">R$ 310,50</p>
-          <button onclick="window.location.href='assinar.html';">
-            Assinar
-          </button>
-        </div>
-        <div class="plano destaque">
-          <h3>Anual</h3>
-          <p>Plano anual com os melhores benefícios e economia.</p>
-          <p class="valor">R$ 599,90</p>
-          <button onclick="window.location.href='assinar.html';">
-            Assinar
-          </button>
-        </div>
-      </section>
-
-      <form action="/submit" method="POST">
-        <h2>Solicitar período gratuito</h2>
-        <!-- Nome da empresa -->
-        <label for="nome-empresa">Nome da Empresa</label>
-        <input type="text" id="nome-empresa" name="nome-empresa" required />
-
-        <label for="cnpj">CNPJ</label>
-        <input
-          type="text"
-          id="cnpj"
-          name="cnpj"
-          required
-          placeholder="00.000.000/0000-00"
-        />
-
-        <label for="email">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          placeholder="exemplo@empresa.com"
-        />
-
-        <label for="telefone">Telefone</label>
-        <input
-          type="tel"
-          id="telefone"
-          name="telefone"
-          required
-          placeholder="(00) 00000-0000"
-        />
-
-        <label for="rua">Rua</label>
-        <input
-          type="text"
-          id="rua"
-          name="rua"
-          required
-          placeholder="Digite o nome da rua"
-        />
-
-        <label for="numero">Número</label>
-        <input
-          type="text"
-          id="numero"
-          name="numero"
-          required
-          placeholder="Digite o número do local"
-        />
-
-        <label for="bairro">Bairro</label>
-        <input
-          type="text"
-          id="bairro"
-          name="bairro"
-          required
-          placeholder="Digite o bairro"
-        />
-
-        <label for="cidade">Cidade</label>
-        <input
-          type="text"
-          id="cidade"
-          name="cidade"
-          required
-          placeholder="Digite a cidade"
-        />
-
-        <label for="estado">Estado</label>
-        <input
-          type="text"
-          id="estado"
-          name="estado"
-          required
-          placeholder="Digite o estado"
-        />
-
-        <label for="cep">CEP</label>
-        <input
-          type="text"
-          id="cep"
-          name="cep"
-          required
-          placeholder="Digite o CEP"
-        />
-
-        <label for="senha">Senha</label>
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          required
-          placeholder="Digite sua senha"
-        />
-
-        <label for="confirmar-senha">Confirmar Senha</label>
-        <input
-          type="password"
-          id="confirmar-senha"
-          name="confirmar-senha"
-          required
-          placeholder="Confirme sua senha"
-        />
-
-        <button type="submit">Solicitar Período</button>
-      </form>
     </div>
 
-    <footer>
-      <p>&copy; 2024 SoftwareParaConsultas. Todos os direitos reservados.</p>
+
+    <section class="recursos">
+        <h2>Principais Recursos</h2>
+        <ul>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/ios-filled/50/34495e/appointment-reminders.png" alt="Agendamento">
+
+                </div>
+                Agendamento de consultas online
+            </li>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/?size=100&id=9145&format=png&color=000000" alt="Prontuários">
+
+                </div>
+                Gerenciamento de prontuários médicos
+            </li>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/?size=100&id=DRtBOBpoAzKu&format=png&color=000000" alt="Estoque">
+
+                </div>
+                Controle de estoque de medicamentos
+            </li>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/ios-filled/50/34495e/report-card.png" alt="Relatórios">
+
+                </div>
+                Relatórios completos de atendimentos e finanças
+            </li>
+        </ul>
+    </section>
+
+    <section class="disponibilidade">
+        <h2>Disponibilidade</h2>
+        <ul>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/ios-filled/50/34495e/cloud-storage.png" alt="Nuvem">
+                </div>
+                <p>Acesso remoto em qualquer dispositivo</p>
+            </li>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/ios-filled/50/34495e/online-support.png" alt="Suporte">
+                </div>
+                <p>Suporte técnico 24/7</p>
+            </li>
+            <li>
+                <div>
+                    <img src="https://img.icons8.com/?size=100&id=JsUd2KdFB2NA&format=png&color=000000" alt="Segurança">
+                </div>
+                <p>Segurança de dados de alta qualidade</p>
+
+            </li>
+        </ul>
+    </section>
+
+
+
+    <section class="telemedicina">
+        <div class="flex-container">
+            <div class="left">
+                <h2>Telemedicina</h2>
+                <p>A Telemedicina permite a realização de consultas médicas à distância, proporcionando maior
+                    comodidade e acesso à saúde de qualidade. A nossa plataforma integra funcionalidades para
+                    consultas por vídeo, envio de documentos médicos e muito mais, tudo de forma segura e
+                    eficiente.</p>
+            </div>
+            <div class="right">
+                <img src="./assets/telemedicina.jpg" alt="Imagem do Software">
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <p>&copy; 2025 Sistema de Gestão Clínica. Todos os direitos reservados.</p>
     </footer>
 
-    <script>
-      const track = document.querySelector(".carrosel-track");
-      const slides = Array.from(track.children);
-      const prevButton = document.querySelector(".carrosel-button.prev");
-      const nextButton = document.querySelector(".carrosel-button.next");
+    <script src="script.js"></script>
+</body>
 
-      let atualIndex = 0;
-
-      const updatecarrosel = () => {
-        track.style.transform = `translateX(-${atualIndex * 100}%)`;
-        prevButton.disabled = atualIndex === 0;
-        nextButton.disabled = atualIndex === slides.length - 1;
-      };
-
-      prevButton.addEventListener("click", () => {
-        if (atualIndex > 0) {
-          atualIndex--;
-          updatecarrosel();
-        }
-      });
-
-      nextButton.addEventListener("click", () => {
-        if (atualIndex < slides.length - 1) {
-          atualIndex++;
-          updatecarrosel();
-        }
-      });
-
-      updatecarrosel();
-    </script>
-  </body>
 </html>
