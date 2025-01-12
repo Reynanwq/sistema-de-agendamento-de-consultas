@@ -5,16 +5,13 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url('https://t4.ftcdn.net/jpg/08/52/94/85/360_F_852948577_gduVbAPrSEGieuy1ZQlndbIlcbrfvLfr.jpg');
+  background-image: url("https://t4.ftcdn.net/jpg/08/52/94/85/360_F_852948577_gduVbAPrSEGieuy1ZQlndbIlcbrfvLfr.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: 'Roboto', sans-serif;
-
+  font-family: "Roboto", sans-serif;
 }
-
-
 
 .login-container {
   background-color: #fff;
@@ -24,7 +21,7 @@ body {
   width: 300px;
   margin: 50px auto;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .login-container h2 {
@@ -56,3 +53,13 @@ body {
   cursor: pointer;
 }
 
+.login-container .secondary-button {
+  margin-top: 10px;
+  background-color: #258b62;
+  color: #fff;
+  text-align: center;
+}
+
+.login-container .secondary-button:hover {
+  background-color: #258b62;
+}
