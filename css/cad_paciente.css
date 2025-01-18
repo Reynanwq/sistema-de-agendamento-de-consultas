@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-  background-color: #258b62;
+  background-color: #39aa7d;
 }
 
 h2 {
@@ -59,4 +59,58 @@ h2 {
   color: #258b62;
   margin-bottom: 20px;
   font-size: 36px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #258b62;
+  color: white;
+}
+
+td:nth-child(5) {
+  width: 150px; 
+  text-align: center;
+}
+
+td:last-child {
+  width: 200px;
+  text-align: center; 
+}
+
+button {
+  background-color: #258b62;
+  color: white;
+  border: none;
+  padding: 8px 15px; 
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin: 0 5px; 
+}
+
+button:hover {
+  background-color: #39aa7d;
+}
+
+button:focus {
+  outline: none;
+}
+
+button[style*="background-color: #f44336"] {
+  background-color: #f44336;
+}
+
+button[style*="background-color: #f44336"]:hover {
+  background-color: #d32f2f;
 }

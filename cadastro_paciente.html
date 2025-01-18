@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Pacientes</title>
+    <title>Cadastro e Listagem de Pacientes</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
@@ -90,17 +90,57 @@
             required
           />
 
-          <label for="telefone-paciente">Endereço Completo:</label>
+          <label for="endereco-paciente">Endereço Completo:</label>
           <input
             type="text"
             id="Endereco-paciente"
             name="Endereco"
-            placeholder="Endereco do paciente"
+            placeholder="Endereço do paciente"
             required
           />
 
           <button type="submit">Cadastrar Paciente</button>
         </form>
+      </div>
+
+      <h2>Lista de Pacientes</h2>
+      <div class="container">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nome</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Data de Nascimento</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">CPF</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Telefone</th>
+              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;">João Silva</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">01/01/1990</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">123.456.789-00</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">joao@exemplo.com</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">(11) 98765-4321</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">
+                <button style="background-color: #258b62; color: white; border: none; padding: 5px 10px; cursor: pointer;">Editar</button>
+                <button style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-left: 5px;">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;">Maria Oliveira</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">15/02/1985</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">987.654.321-00</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">maria@exemplo.com</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">(11) 91234-5678</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">
+                <button style="background-color: #258b62; color: white; border: none; padding: 5px 10px; cursor: pointer;">Editar</button>
+                <button style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-left: 5px;">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </main>
   </body>
