@@ -4,168 +4,116 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Médicos</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/cad_medico.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/cadastros.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+
   </head>
 
   <body>
     <header>
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 20px;
-        "
-      >
-        <div style="display: flex; align-items: center">
+      <div class="header-container">
+        <div class="logo-container">
           <img
             src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
             alt="Logo"
-            style="height: 80px; margin-right: 30px"
+            class="logo"
           />
-          <h1 style="font-size: 24px; color: #fff">MedLink</h1>
+          <h1 class="site-title">MedLink</h1>
         </div>
+  
+        <nav class="navbar">
+          <a href="./cadastro_consulta.html">Consultas</a>
+          <a href="./cadastro_paciente.html">Pacientes</a>
+          <a href="./cadastro_medico.html">Médicos</a>
+        </nav>
+  
+        <a href="index.html" class="login-button">Sair</a>
       </div>
     </header>
 
-    <main>
-      <h2>Cadastro de Médicos</h2>
-      <div class="container">
-        <form action="cadastrar_medico.php" method="POST">
-          <label for="nome-medico">Nome:</label>
-          <input
-            type="text"
-            id="nome-medico"
-            name="nome"
-            placeholder="Nome do médico"
-            required
-          />
+    <main class="container my-5">
+      <div class="d-flex justify-content-center mb-5">
+        <div class="w-50">
+          <h2>Cadastro de Médicos</h2>
+          <form action="cadastrar_medico.php" method="POST">
+            <div class="mb-3">
+              <label for="nome-medico" class="form-label">Nome:</label>
+              <input
+                type="text"
+                id="nome-medico"
+                name="nome"
+                class="form-control"
+                placeholder="Nome do médico"
+                required
+              />
+            </div>
 
-          <label for="crm-medico">CRM:</label>
-          <input
-            type="text"
-            id="crm-medico"
-            name="crm"
-            placeholder="CRM do médico"
-            required
-          />
+            <div class="mb-3">
+              <label for="crm-medico" class="form-label">CRM:</label>
+              <input
+                type="text"
+                id="crm-medico"
+                name="crm"
+                class="form-control"
+                placeholder="CRM do médico"
+                required
+              />
+            </div>
 
-          <label for="especialidade-medico">Especialidade:</label>
-          <select id="especialidade-medico" name="especialidade" required>
-            <option value="">Selecione uma especialidade</option>
-            <option value="Alergia e Imunologia">Alergia e Imunologia</option>
-            <option value="Anestesiologia">Anestesiologia</option>
-            <option value="Cardiologia">Cardiologia</option>
-            <option value="Dermatologia">Dermatologia</option>
-            <option value="Endocrinologia e Metabologia">
-              Endocrinologia e Metabologia
-            </option>
-            <option value="Gastroenterologia">Gastroenterologia</option>
-            <option value="Geriatria">Geriatria</option>
-            <option value="Hematologia e Hemoterapia">
-              Hematologia e Hemoterapia
-            </option>
-            <option value="Infectologia">Infectologia</option>
-            <option value="Medicina de Família e Comunidade">
-              Medicina de Família e Comunidade
-            </option>
-            <option value="Medicina do Trabalho">Medicina do Trabalho</option>
-            <option value="Medicina Esportiva">Medicina Esportiva</option>
-            <option value="Nefrologia">Nefrologia</option>
-            <option value="Neurologia">Neurologia</option>
-            <option value="Oncologia Clínica">Oncologia Clínica</option>
-            <option value="Pneumologia">Pneumologia</option>
-            <option value="Psiquiatria">Psiquiatria</option>
-            <option value="Reumatologia">Reumatologia</option>
-            <option value="Cirurgia Geral">Cirurgia Geral</option>
-            <option value="Cirurgia Cardiovascular">
-              Cirurgia Cardiovascular
-            </option>
-            <option value="Cirurgia da Mão">Cirurgia da Mão</option>
-            <option value="Cirurgia de Cabeça e Pescoço">
-              Cirurgia de Cabeça e Pescoço
-            </option>
-            <option value="Cirurgia do Aparelho Digestivo">
-              Cirurgia do Aparelho Digestivo
-            </option>
-            <option value="Cirurgia Pediátrica">Cirurgia Pediátrica</option>
-            <option value="Cirurgia Plástica">Cirurgia Plástica</option>
-            <option value="Cirurgia Torácica">Cirurgia Torácica</option>
-            <option value="Cirurgia Vascular">Cirurgia Vascular</option>
-            <option value="Ginecologia">Ginecologia</option>
-            <option value="Obstetrícia">Obstetrícia</option>
-            <option value="Pediatria">Pediatria</option>
-            <option value="Neonatologia">Neonatologia</option>
-            <option value="Radiologia e Diagnóstico por Imagem">
-              Radiologia e Diagnóstico por Imagem
-            </option>
-            <option value="Medicina Nuclear">Medicina Nuclear</option>
-            <option value="Patologia">Patologia</option>
-            <option value="Patologia Clínica/Medicina Laboratorial">
-              Patologia Clínica/Medicina Laboratorial
-            </option>
-            <option value="Endoscopia">Endoscopia</option>
-            <option value="Medicina Preventiva">Medicina Preventiva</option>
-            <option value="Medicina do Tráfego">Medicina do Tráfego</option>
-            <option value="Medicina Legal">Medicina Legal</option>
-            <option value="Saúde Pública">Saúde Pública</option>
-            <option value="Oftalmologia">Oftalmologia</option>
-            <option value="Otorrinolaringologia">Otorrinolaringologia</option>
-            <option value="Acupuntura">Acupuntura</option>
-            <option value="Genética Médica">Genética Médica</option>
-            <option value="Homeopatia">Homeopatia</option>
-            <option value="Medicina Física e Reabilitação (Fisiatria)">
-              Medicina Física e Reabilitação (Fisiatria)
-            </option>
-            <option value="Medicina Intensiva">Medicina Intensiva</option>
-            <option value="Medicina Paliativa">Medicina Paliativa</option>
-            <option value="Ortopedia e Traumatologia">
-              Ortopedia e Traumatologia
-            </option>
-          </select>
+            <div class="mb-3">
+              <label for="especialidade-medico" class="form-label">Especialidade:</label>
+              <select id="especialidade-medico" name="especialidade" class="form-select" required>
+                <option value="">Selecione uma especialidade</option>
+              </select>
+            </div>
 
-          <button type="submit">Cadastrar Médico</button>
-        </form>
+            <button type="submit" class="btn" style="color: #fff; background-color: #258b62;">Cadastrar Médico</button>
+          </form>
+        </div>
       </div>
-      <div class="container" style="margin-top: 30px;">
-        <h2>Lista de Médicos</h2>
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nome</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Especialidade</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">CRM</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Exemplo de um médico cadastrado, substitua com dados reais do banco -->
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">Dr. João Silva</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">Cardiologista</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">12345-SP</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">
-                <button style="background-color: #258b62; color: white; border: none; padding: 5px 10px; cursor: pointer;">Editar</button>
-                <button style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-left: 5px;">Excluir</button>
-              </td>
-            </tr>
-            <!-- Outro exemplo -->
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">Dr. Maria Oliveira</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">Dermatologista</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">67890-SP</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">
-                <button style="background-color: #258b62; color: white; border: none; padding: 5px 10px; cursor: pointer;">Editar</button>
-                <button style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-left: 5px;">Excluir</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="d-flex justify-content-center">
+        <div class="w-75">
+          <h2>Lista de Médicos</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Especialidade</th>
+                  <th>CRM</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dr. João Silva</td>
+                  <td>Cardiologista</td>
+                  <td>12345-SP</td>
+                  <td>
+                    <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
+                    <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Dr. Maria Oliveira</td>
+                  <td>Dermatologista</td>
+                  <td>67890-SP</td>
+                  <td>
+                    <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
+                    <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+          
+        </div>
       </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

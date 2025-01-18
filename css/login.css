@@ -63,3 +63,8 @@ body {
 .login-container .secondary-button:hover {
   background-color: #258b62;
 }
+
+a {
+  text-decoration: none;
+  color: white;
+}

@@ -28,7 +28,6 @@ section {
 .left,
 .right {
   width: 48%;
-  /* Ajustado para que fiquem lado a lado */
 }
 
 .left h2 {

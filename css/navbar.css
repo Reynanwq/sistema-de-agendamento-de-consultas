@@ -64,3 +64,15 @@ nav a:hover {
 .footer p {
     margin-top: 20px;
 }
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }

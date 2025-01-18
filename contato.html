@@ -9,28 +9,31 @@
   </head>
   <body>
     <header>
-      <div style="display: flex;justify-content: space-between;align-items: center;padding: 0 20px;">
-          <div style="display: flex; align-items: center">
-              <img src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000" alt="Logo" style="height: 80px; margin-right: 30px" />
-              <h1 style="font-size: 24px; color: #fff">MedLink</h1>
-          </div>
+      <div class="header-container">
+        <div class="logo-container">
+          <img
+            src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
+            alt="Logo"
+            class="logo"
+          />
+          <h1 class="site-title">MedLink</h1>
+        </div>
 
-          <nav>
-              <a href="./index.html">Home</a>
-              <a href="planos.html">Planos</a>
-              <a href="contato.html">Contato</a>
-          </nav>
+        <nav class="navbar">
+          <a href="./index.html">Home</a>
+          <a href="planos.html">Planos</a>
+          <a href="contato.html">Contato</a>
+        </nav>
 
-          <a href="login.html" class="login-button">Login</a>
-
+        <a href="login.html" class="login-button">Login</a>
       </div>
-  </header>
+    </header>
 
     <div class="container">
-      <h2>Contato</h2>
+      <h2>Cadastro de Empresa</h2>
       <form action="/submit" method="POST">
         <label for="nome-empresa">Nome da Empresa</label>
-        <input type="text" id="nome-empresa" name="nome-empresa" placeholder="Nome da empresa" required />
+        <input type="text" id="nome-empresa" name="nome-empresa" placeholder="Nome da empresa" required oninput="disableInput(this)" />
 
         <label for="cnpj">CNPJ</label>
         <input
@@ -39,6 +42,7 @@
           name="cnpj"
           required
           placeholder="00.000.000/0000-00"
+          oninput="disableInput(this)"
         />
 
         <label for="email">E-mail</label>
@@ -48,6 +52,7 @@
           name="email"
           required
           placeholder="exemplo@empresa.com"
+          oninput="disableInput(this)"
         />
 
         <label for="telefone">Telefone</label>
@@ -57,6 +62,7 @@
           name="telefone"
           required
           placeholder="(00) 00000-0000"
+          oninput="disableInput(this)"
         />
 
         <label for="cep">CEP</label>
@@ -66,24 +72,102 @@
           name="cep"
           required
           placeholder="Digite o CEP"
+          onblur="buscarEndereco()"
+        />
+
+        <label for="logradouro">Logradouro</label>
+        <input
+          type="text"
+          id="logradouro"
+          name="logradouro"
+          required
+          placeholder="Rua, Avenida..."
+          oninput="disableInput(this)"
+        />
+
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          id="bairro"
+          name="bairro"
+          required
+          placeholder="Bairro"
+          oninput="disableInput(this)"
+        />
+
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          id="cidade"
+          name="cidade"
+          required
+          placeholder="Cidade"
+          oninput="disableInput(this)"
+        />
+
+        <label for="estado">Estado</label>
+        <input
+          type="text"
+          id="estado"
+          name="estado"
+          required
+          placeholder="Estado"
+          oninput="disableInput(this)"
         />
 
         <label for="plano">Plano Escolhido</label>
-        <select id="plano" name="plano" required>
+        <select id="plano" name="plano" required onchange="disableInput(this)">
           <option value="" disabled selected>Selecione um plano</option>
           <option value="Mensal">Mensal</option>
           <option value="Trimestral">Trimestral</option>
           <option value="Semestral">Semestral</option>
           <option value="Anual">Anual</option>
-
         </select>
 
         <button type="submit">Enviar</button>
       </form>
     </div>
 
+    <script>
+      function disableInput(input) {
+        if (input.value) {
+          input.disabled = true;  
+        }
+      }
+
+      function buscarEndereco() {
+        var cep = document.getElementById('cep').value.replace(/\D/g, '');
+        if (cep !== "") {
+          var url = `https://viacep.com.br/ws/${cep}/json/`;
+          
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              if (!data.erro) {
+                document.getElementById('logradouro').value = data.logradouro;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+                // Desabilitar campos de endereço após preenchimento
+                document.getElementById('logradouro').disabled = true;
+                document.getElementById('bairro').disabled = true;
+                document.getElementById('cidade').disabled = true;
+                document.getElementById('estado').disabled = true;
+              } else {
+                alert("CEP não encontrado.");
+              }
+            })
+            .catch(error => {
+              alert("Erro ao buscar o CEP.");
+            });
+        } else {
+          alert("Por favor, insira um CEP válido.");
+        }
+      }
+    </script>
+
     <footer class="footer">
       <p>&copy; 2025 Sistema Medlink. Todos os direitos reservados.</p>
-  </footer>
+    </footer>
   </body>
 </html>
