@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Médicos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/cadastros.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
-
   </head>
-
   <body>
     <header>
       <div class="header-container">
@@ -21,13 +22,11 @@
           />
           <h1 class="site-title">MedLink</h1>
         </div>
-  
         <nav class="navbar">
           <a href="./cadastro_consulta.html">Consultas</a>
           <a href="./cadastro_paciente.html">Pacientes</a>
           <a href="./cadastro_medico.html">Médicos</a>
         </nav>
-  
         <a href="index.html" class="login-button">Sair</a>
       </div>
     </header>
@@ -36,7 +35,7 @@
       <div class="d-flex justify-content-center mb-5">
         <div class="w-50">
           <h2>Cadastro de Médicos</h2>
-          <form action="cadastrar_medico.php" method="POST">
+          <form id="cadastroMedicoForm">
             <div class="mb-3">
               <label for="nome-medico" class="form-label">Nome:</label>
               <input
@@ -48,7 +47,6 @@
                 required
               />
             </div>
-
             <div class="mb-3">
               <label for="crm-medico" class="form-label">CRM:</label>
               <input
@@ -60,15 +58,123 @@
                 required
               />
             </div>
-
             <div class="mb-3">
-              <label for="especialidade-medico" class="form-label">Especialidade:</label>
-              <select id="especialidade-medico" name="especialidade" class="form-select" required>
-                <option value="">Selecione uma especialidade</option>
-              </select>
+              <label for="especialidade-medico" class="form-label"
+                >Especialidade:</label
+              >
+              <input
+                type="text"
+                id="especialidade-medico"
+                name="especialidade"
+                class="form-control"
+                placeholder="Especialidade do médico"
+                required
+              />
             </div>
-
-            <button type="submit" class="btn" style="color: #fff; background-color: #258b62;">Cadastrar Médico</button>
+            <div class="mb-3">
+              <label for="email-medico" class="form-label">Email:</label>
+              <input
+                type="email"
+                id="email-medico"
+                name="email"
+                class="form-control"
+                placeholder="Email do médico"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="telefone-medico" class="form-label">Telefone:</label>
+              <input
+                type="text"
+                id="telefone-medico"
+                name="telefone"
+                class="form-control"
+                placeholder="Telefone do médico"
+                required
+              />
+            </div>
+            <fieldset class="mb-3">
+              <legend>Endereço:</legend>
+              <div class="mb-3">
+                <label for="logradouro" class="form-label">Logradouro:</label>
+                <input
+                  type="text"
+                  id="logradouro"
+                  name="endereco.logradouro"
+                  class="form-control"
+                  placeholder="Rua, Avenida, etc."
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="numero" class="form-label">Número:</label>
+                <input
+                  type="text"
+                  id="numero"
+                  name="endereco.numero"
+                  class="form-control"
+                  placeholder="Número"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="complemento" class="form-label">Complemento:</label>
+                <input
+                  type="text"
+                  id="complemento"
+                  name="endereco.complemento"
+                  class="form-control"
+                  placeholder="Complemento"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="bairro" class="form-label">Bairro:</label>
+                <input
+                  type="text"
+                  id="bairro"
+                  name="endereco.bairro"
+                  class="form-control"
+                  placeholder="Bairro"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cidade" class="form-label">Cidade:</label>
+                <input
+                  type="text"
+                  id="cidade"
+                  name="endereco.cidade"
+                  class="form-control"
+                  placeholder="Cidade"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="uf" class="form-label">UF:</label>
+                <input
+                  type="text"
+                  id="uf"
+                  name="endereco.uf"
+                  class="form-control"
+                  placeholder="Estado (UF)"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cep" class="form-label">CEP:</label>
+                <input
+                  type="text"
+                  id="cep"
+                  name="endereco.cep"
+                  class="form-control"
+                  placeholder="CEP"
+                  required
+                />
+              </div>
+            </fieldset>
+            <button type="submit" class="btn btn-success">
+              Cadastrar Médico
+            </button>
           </form>
         </div>
       </div>
@@ -81,38 +187,113 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Especialidade</th>
+                  <th>Email</th>
                   <th>CRM</th>
-                  <th>Ações</th>
+                  <th>Especialidade</th>
+                  <th>Telefone</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Dr. João Silva</td>
-                  <td>Cardiologista</td>
-                  <td>12345-SP</td>
-                  <td>
-                    <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
-                    <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Dr. Maria Oliveira</td>
-                  <td>Dermatologista</td>
-                  <td>67890-SP</td>
-                  <td>
-                    <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
-                    <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="medicoTableBody"></tbody>
             </table>
           </div>
-        
-          
         </div>
       </div>
     </main>
+
+    <script>
+      const API_URL = "http://localhost:8080";
+
+      async function fetchMedicos() {
+        try {
+          const response = await fetch(`${API_URL}/medicos`, {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Erro ao buscar médicos: " + response.statusText);
+          }
+
+          const data = await response.json();
+          const medicos = data.content;
+          const tableBody = document.getElementById("medicoTableBody");
+          tableBody.innerHTML = "";
+
+          medicos.forEach((medico) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${medico.nome}</td>
+            <td>${medico.email}</td>
+            <td>${medico.crm}</td>
+            <td>${medico.especialidade}</td>
+            <td>${medico.telefone}</td>
+          `;
+            tableBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error(error.message);
+          alert(
+            "Erro ao buscar médicos. Verifique a conexão e o token de autenticação."
+          );
+        }
+      }
+
+      // Função para cadastrar médicos
+      async function cadastrarMedico(event) {
+        event.preventDefault();
+
+        const form = document.getElementById("cadastroMedicoForm");
+        const formData = new FormData(form);
+        const medico = {};
+        medico.nome = formData.get("nome");
+        medico.email = formData.get("email");
+        medico.telefone = formData.get("telefone");
+        medico.crm = formData.get("crm");
+        medico.especialidade = formData.get("especialidade");
+        medico.endereco = {
+          logradouro: formData.get("endereco.logradouro"),
+          numero: formData.get("endereco.numero"),
+          complemento: formData.get("endereco.complemento"),
+          bairro: formData.get("endereco.bairro"),
+          cidade: formData.get("endereco.cidade"),
+          uf: formData.get("endereco.uf"),
+          cep: formData.get("endereco.cep"),
+        };
+
+        try {
+          const response = await fetch(`${API_URL}/medicos`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            body: JSON.stringify(medico),
+          });
+
+          if (response.ok) {
+            alert("Médico cadastrado com sucesso!");
+            form.reset();
+            fetchMedicos();
+          } else {
+            const errorData = await response.json();
+            alert("Erro ao cadastrar médico: " + errorData.message);
+          }
+        } catch (error) {
+          console.error("Erro ao cadastrar médico:", error);
+          alert(
+            "Erro ao cadastrar médico. Verifique a conexão e o token de autenticação."
+          );
+        }
+      }
+
+      document
+        .getElementById("cadastroMedicoForm")
+        .addEventListener("submit", cadastrarMedico);
+
+      document.addEventListener("DOMContentLoaded", fetchMedicos);
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>

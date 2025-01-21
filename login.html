@@ -1,55 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/home.css">
-  <link rel="stylesheet" href="./css/navbar.css">
-  <link rel="stylesheet" href="./css/login.css">
-  <style>
-   
-  </style>
-</head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="logo-container">
+          <img
+            src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
+            alt="Logo"
+            class="logo"
+          />
+          <h1 class="site-title">MedLink</h1>
+        </div>
 
-<body>
-  <header>
-    <div class="header-container">
-      <div class="logo-container">
-        <img
-          src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
-          alt="Logo"
-          class="logo"
-        />
-        <h1 class="site-title">MedLink</h1>
+        <nav class="navbar">
+          <a href="./index.html">Home</a>
+          <a href="planos.html">Planos</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+
+        <a href="login.html" class="login-button">Login</a>
       </div>
+    </header>
 
-      <nav class="navbar">
-        <a href="./index.html">Home</a>
-        <a href="planos.html">Planos</a>
-        <a href="contato.html">Contato</a>
-      </nav>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="login">E-mail</label>
+        <input
+          type="email"
+          id="login"
+          name="login"
+          placeholder="Digite seu e-mail"
+          required
+        />
 
-      <a href="login.html" class="login-button">Login</a>
+        <label for="senha">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          placeholder="Digite sua senha"
+          required
+        />
+
+        <button type="submit">Entrar</button>
+      </form>
+      <button
+        class="secondary-button"
+        onclick="window.location.href='recuperar.html'"
+      >
+        Recuperar Senha
+      </button>
     </div>
-  </header>
 
-  <div class="login-container">
-    <h2>Login</h2>
-    <form action="" method="POST">
-      <label for="cnpj">CNPJ</label>
-      <input type="text" id="cnpj" name="cnpj" placeholder="Digite seu CNPJ" required>
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Impede o envio padrão do formulário
 
-      <label for="senha">Senha</label>
-      <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+          const login = document.getElementById("login").value;
+          const senha = document.getElementById("senha").value;
 
-      <button type="submit" formaction="cadastro_consulta.html">Entrar</button>
-    </form>
-    <button class="secondary-button" onclick="window.location.href='recuperar.html'">Recuperar Senha</button>
-  </div>
+          const body = {
+            login: login,
+            senha: senha,
+          };
 
-</body>
+          try {
+            const response = await fetch("http://localhost:8080/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            });
 
+            const data = await response.json();
+
+            if (response.ok) {
+              const token = data.token;
+              localStorage.setItem("token", token);
+              console.log("Token recebido:", token);
+              window.location.href = "./cadastro_medico.html";
+            } else {
+              alert("Erro ao fazer login: " + data.message);
+            }
+          } catch (error) {
+            alert("Erro de conexão: " + error.message);
+          }
+        });
+    </script>
+  </body>
 </html>
