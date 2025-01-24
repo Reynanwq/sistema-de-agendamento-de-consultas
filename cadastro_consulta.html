@@ -1,116 +1,198 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Consultas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/cadastros.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro de Consultas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/cadastros.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
-</head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="logo-container">
+          <img
+            src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
+            alt="Logo"
+            class="logo"
+          />
+          <h1 class="site-title">MedLink</h1>
+        </div>
 
-<body>
-  <header>
-    <div class="header-container">
-      <div class="logo-container">
-        <img
-          src="https://img.icons8.com/?size=100&id=JuUcYPInSV2Q&format=png&color=000000"
-          alt="Logo"
-          class="logo"
-        />
-        <h1 class="site-title">MedLink</h1>
+        <nav class="navbar">
+          <a href="./cadastro_consulta.html">Consultas</a>
+          <a href="./cadastro_paciente.html">Pacientes</a>
+          <a href="./cadastro_medico.html">Médicos</a>
+        </nav>
+
+        <a href="index.html" class="login-button">Sair</a>
       </div>
+    </header>
 
-      <nav class="navbar">
-        <a href="./cadastro_consulta.html">Consultas</a>
-        <a href="./cadastro_paciente.html">Pacientes</a>
-        <a href="./cadastro_medico.html">Médicos</a>
-      </nav>
+    <main class="container my-5">
+      <div class="d-flex justify-content-center mb-5">
+        <div class="w-50">
+          <h2>Cadastro de Consultas</h2>
+          <form id="consulta-form">
+            <div class="mb-3">
+              <label for="medico-consulta" class="form-label">Médico:</label>
+              <select
+                id="medico-consulta"
+                name="medicoId"
+                class="form-select"
+                required
+              >
+                <option value="">Carregando médicos...</option>
+              </select>
+            </div>
 
-      <a href="index.html" class="login-button">Sair</a>
-    </div>
-  </header>
+            <div class="mb-3">
+              <label for="paciente-consulta" class="form-label"
+                >Paciente:</label
+              >
+              <select
+                id="paciente-consulta"
+                name="pacienteId"
+                class="form-select"
+                required
+              >
+                <option value="">Carregando pacientes...</option>
+              </select>
+            </div>
 
-  <main class="container my-5">
-    <div class="d-flex justify-content-center mb-5">
-      <div class="w-50">
-        <h2>Cadastro de Consultas</h2>
-        <form action="cadastrar_consulta.php" method="POST">
-          <div class="mb-3">
-            <label for="medico-consulta" class="form-label">Médico:</label>
-            <select id="medico-consulta" name="medico" class="form-select" required>
-              <option value="">Selecione um médico</option>
-              <option value="1">Dr. João Silva (Cardiologista)</option>
-              <option value="2">Dr. Maria Oliveira (Dermatologista)</option>
-            </select>
-          </div>
+            <div class="mb-3">
+              <label for="horario-consulta" class="form-label">
+                Data e Hora da Consulta:
+              </label>
+              <input
+                type="datetime-local"
+                id="horario-consulta"
+                name="data"
+                class="form-control"
+                required
+              />
+            </div>
 
-          <div class="mb-3">
-            <label for="paciente-consulta" class="form-label">Paciente:</label>
-            <select id="paciente-consulta" name="paciente" class="form-select" required>
-              <option value="">Selecione um paciente</option>
-              <option value="1">João Silva</option>
-              <option value="2">Maria Oliveira</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="horario-consulta" class="form-label">Data e Hora da Consulta:</label>
-            <input
-              type="datetime-local"
-              id="horario-consulta"
-              name="horario"
-              class="form-control"
-              required
-            />
-          </div>
-
-          <button type="submit" class="btn" style="color: #fff; background-color: #258b62;">Cadastrar Consulta</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-center">
-      <div class="w-75">
-        <h2>Lista de Consultas</h2>
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Médico</th>
-                <th>Paciente</th>
-                <th>Data e Hora</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Dr. João Silva</td>
-                <td>João Silva</td>
-                <td>12/12/2025 14:30</td>
-                <td>
-                  <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
-                  <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Dr. Maria Oliveira</td>
-                <td>Maria Oliveira</td>
-                <td>13/12/2025 10:00</td>
-                <td>
-                  <button class="btn btn-success d-block mb-2" style="width: 100%;">Editar</button>
-                  <button class="btn btn-danger d-block" style="width: 100%;">Excluir</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <button
+              type="submit"
+              class="btn"
+              style="color: #fff; background-color: #258b62"
+            >
+              Cadastrar Consulta
+            </button>
+          </form>
         </div>
       </div>
-    </div>
-  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+      <div id="success-message" class="alert alert-success d-none" role="alert">
+        Consulta cadastrada com sucesso!
+      </div>
 
+      <div id="error-message" class="alert alert-danger d-none" role="alert">
+        Ocorreu um erro ao cadastrar a consulta. Tente novamente.
+      </div>
+    </main>
+
+    <script>
+      const API_BASE_URL = "http://localhost:8080";
+
+      // Elementos do DOM
+      const medicoSelect = document.getElementById("medico-consulta");
+      const pacienteSelect = document.getElementById("paciente-consulta");
+      const consultaForm = document.getElementById("consulta-form");
+      const successMessage = document.getElementById("success-message");
+      const errorMessage = document.getElementById("error-message");
+
+      // Carrega médicos e pacientes
+      async function loadOptions() {
+        try {
+          const [medicosResponse, pacientesResponse] = await Promise.all([
+            fetch(`${API_BASE_URL}/medicos`, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"), // Incluindo o token
+              },
+            }),
+            fetch(`${API_BASE_URL}/pacientes`, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"), // Incluindo o token
+              },
+            }),
+          ]);
+
+          if (!medicosResponse.ok || !pacientesResponse.ok) {
+            throw new Error("Erro ao carregar dados dos servidores");
+          }
+
+          const medicosData = await medicosResponse.json();
+          const pacientesData = await pacientesResponse.json();
+
+          // Popula médicos
+          medicoSelect.innerHTML =
+            '<option value="">Selecione um médico</option>';
+          medicosData.content.forEach((medico) => {
+            const option = document.createElement("option");
+            option.value = medico.id;
+            option.textContent = `${medico.nome} (${medico.especialidade})`;
+            medicoSelect.appendChild(option);
+          });
+
+          // Popula pacientes
+          pacienteSelect.innerHTML =
+            '<option value="">Selecione um paciente</option>';
+          pacientesData.content.forEach((paciente) => {
+            const option = document.createElement("option");
+            option.value = paciente.id;
+            option.textContent = paciente.nome;
+            pacienteSelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Erro ao carregar médicos ou pacientes:", error);
+          alert("Erro ao carregar dados. Tente novamente.");
+        }
+      }
+
+      // Envia o formulário
+      consultaForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(consultaForm);
+        const data = {
+          medicoId: formData.get("medicoId"),
+          pacienteId: formData.get("pacienteId"),
+          data: formData.get("data"),
+        };
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/consultas`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            successMessage.classList.remove("d-none");
+            errorMessage.classList.add("d-none");
+            consultaForm.reset();
+          } else {
+            throw new Error("Falha ao cadastrar consulta");
+          }
+        } catch (error) {
+          console.error("Erro ao cadastrar consulta:", error);
+          successMessage.classList.add("d-none");
+          errorMessage.classList.remove("d-none");
+        }
+      });
+
+      // Inicialização
+      loadOptions();
+    </script>
+  </body>
 </html>
