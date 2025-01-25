@@ -110,6 +110,13 @@
 
       // Carrega médicos e pacientes
       async function loadOptions() {
+        let tokenExists = localStorage.getItem('token');
+
+        if (!tokenExists) {
+            window.location.href = 'login.html';
+            alert('Sessão expirada. Faça o login novamente.')
+            return;
+        }
         try {
           const [medicosResponse, pacientesResponse] = await Promise.all([
             fetch(`${API_BASE_URL}/medicos`, {

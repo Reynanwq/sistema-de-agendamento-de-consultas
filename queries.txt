@@ -1,0 +1,191 @@
+--i) Consultas de Baixa Complexidade
+
+--a) Qual a renda média per capita das famílias?
+
+SELECT AVG(CAST(REPLACE(vlr_renda_media_fam, ',', '.') AS NUMERIC)) AS media FROM tb_familia;
+
+--b) Quais pessoas nasceram em outro país?
+
+SELECT * FROM tb_pessoa where cod_local_nascimento_pessoa = 3
+
+--c) Quantas pessoas maiores e quantas menores?
+
+SELECT 
+    SUM(CASE WHEN idade > 18 THEN idade ELSE 0 END) AS maiores,
+    SUM(CASE WHEN idade <= 18 THEN idade ELSE 0 END) AS menores
+FROM tb_pessoa;
+
+--d) Quantos domicílios são de área rural?
+
+SELECT COUNT(*) FROM tb_domicilio WHERE cod_local_domic_fam = 1
+
+--e) Quantas domicílios não têm banheiro?
+
+SELECT COUNT(*) FROM tb_domicilio WHERE cod_banheiro_domic_fam = 1
+
+--ii) Consultas de Média Complexidade
+
+--a) Quais são as famílias e seus integrantes?
+
+SELECT
+    tb_familia.id_familia AS idFamilia,
+tb_familia.qtde_pessoas AS qtdePessoas,
+    tb_pessoa.id_pessoa AS idPessoa
+FROM
+    tb_familia
+INNER JOIN
+    tb_pessoa ON tb_familia.id_familia = tb_pessoa.id_familia
+ORDER BY tb_familia.id_familia;
+
+--b) Quais vivem sem água encanada?
+
+SELECT 
+	tb_familia.id_familia,
+	tb_familia.qtde_pessoas,
+	tb_domicilio.cod_agua_canalizada_fam
+	FROM 
+		tb_familia 
+	INNER JOIN tb_domicilio ON tb_familia.id_familia = tb_domicilio.id_familia
+	WHERE tb_domicilio.cod_agua_canalizada_fam = 2
+
+--c) Quais famílias vivem sem energia elétrica?
+
+SELECT
+tb_familia.id_familia,
+tb_familia.qtde_pessoas,
+tb_domicilio.cod_iluminacao_domic_fam
+FROM tb_familia
+	INNER JOIN tb_domicilio ON tb_familia.id_familia = tb_domicilio.id_familia
+	WHERE tb_domicilio.cod_iluminacao_domic_fam IN (4, 5, 6)
+
+--d) Quais pessoas maiores de 18 nunca frequentaram uma escola?
+
+SELECT
+    tb_esc.id_pessoa,
+    tb_esc.id_familia,
+    tb_pessoa.idade,
+    tb_pessoa.cod_raca_cor_pessoa,
+    tb_pessoa.cod_sexo_pessoa
+FROM
+    tb_esc 
+    INNER JOIN tb_pessoa ON tb_esc.id_pessoa = tb_pessoa.id_pessoa WHERE ind_frequenta_escola_memb = 4 AND tb_pessoa.idade > 18
+
+--e) Qual a quantidade de famílias beneficiadas por UF?
+
+SELECT 
+	tb_mun.uf,
+	COUNT(tb_familia.id_familia) AS quantidade_familias
+FROM tb_familia
+	INNER JOIN tb_mun ON tb_familia.cd_ibge = tb_mun.cd_ibge
+GROUP BY tb_mun.uf;
+
+
+--iii) Consultas de Alta Complexidade
+--a) Municípios que possuem mais pessoas nascidas foram do país
+
+SELECT 
+    tb_mun.nome_municipio,
+    tb_mun.uf,
+    COUNT(tb_pessoa.id_pessoa) AS quantidade_pessoas_nascidas_fora
+FROM 
+    tb_mun
+JOIN 
+    tb_familia ON tb_mun.cd_ibge = tb_familia.cd_ibge
+JOIN 
+    tb_pessoa ON tb_pessoa.id_familia = tb_familia.id_familia
+WHERE 
+    tb_pessoa.cod_local_nascimento_pessoa = 3
+GROUP BY 
+    tb_mun.nome_municipio, tb_mun.uf
+ORDER BY 
+    quantidade_pessoas_nascidas_fora DESC;
+
+--b) Quais são os municípios com a menor média mensal de remuneração bruta para as pessoas que trabalharam nos últimos 12 meses?
+
+SELECT 
+    tb_mun.nome_municipio,
+    tb_mun.uf,
+    COUNT(tb_pessoa.id_pessoa) AS quantidade_pessoas_com_trabalho_12_meses,
+    AVG(tb_trab.val_renda_bruta_12_meses_memb)/12 AS renda_bruta_media_mensal
+FROM 
+    tb_mun
+JOIN 
+    tb_familia ON tb_mun.cd_ibge = tb_familia.cd_ibge
+JOIN 
+    tb_pessoa ON tb_familia.id_familia = tb_pessoa.id_familia
+JOIN 
+    tb_trab ON tb_pessoa.id_pessoa = tb_trab.id_pessoa
+WHERE 
+    tb_trab.cod_trabalho_12_meses_memb = 1
+GROUP BY 
+    tb_mun.nome_municipio, tb_mun.uf
+ORDER BY 
+    renda_bruta_media_mensal ASC LIMIT 1000;
+
+
+
+--c) Quais cidades pequenas (Até 50 mil segundo o IBGE) com mais pessoas que não frequentaram a escola?
+
+SELECT 
+    tb_mun.nome_municipio,
+    tb_mun.uf,
+    COUNT(tb_pessoa.id_pessoa) AS quantidade_pessoas_sem_frequencia_escolar
+FROM 
+    tb_mun
+JOIN 
+    tb_familia ON tb_mun.cd_ibge = tb_familia.cd_ibge
+JOIN 
+    tb_pessoa ON tb_familia.id_familia = tb_pessoa.id_familia
+JOIN 
+    tb_esc ON tb_pessoa.id_pessoa = tb_esc.id_pessoa
+WHERE 
+    tb_esc.ind_frequenta_escola_memb = 4
+    AND tb_mun.faixa_pop IN ('1 - Até 5000', '2 - 5001 até 10000', '3 - 10001 até 20000', '4 - 20001 até 50000')
+GROUP BY 
+    tb_mun.nome_municipio, tb_mun.uf
+ORDER BY 
+    quantidade_pessoas_sem_frequencia_escolar DESC;
+    
+
+--d) Quais cidades com mais pessoas que vivem sem o saneamento básico adequado?
+
+SELECT 
+    tb_mun.nome_municipio,
+    tb_mun.uf,
+    COUNT(tb_pessoa.id_pessoa) AS quantidade_pessoas_sem_saneamento_adequado
+FROM 
+    tb_mun
+JOIN 
+    tb_familia ON tb_mun.cd_ibge = tb_familia.cd_ibge
+JOIN 
+    tb_pessoa ON tb_familia.id_familia = tb_pessoa.id_familia
+JOIN 
+    tb_domicilio ON tb_domicilio.id_familia = tb_familia.id_familia
+WHERE 
+    tb_domicilio.cod_escoa_sanitario_domic_fam NOT IN (1, 2)
+GROUP BY 
+    tb_mun.nome_municipio, tb_mun.uf
+ORDER BY 
+    quantidade_pessoas_sem_saneamento_adequado DESC;
+
+--e) Quais municípios rurais têm a maior quantidade de pessoas e domicílios que vivem em condições remotas? (Sem água canalizada e sem energia elétrica)
+    
+SELECT 
+    tb_mun.nome_municipio,
+    tb_mun.uf,
+    COUNT(tb_domicilio.id_familia) AS quantidade_domicilios_sem_energia_agua,
+    SUM(tb_familia.qtde_pessoas) AS quantidade_pessoas_sem_energia_agua
+FROM 
+    tb_mun
+JOIN 
+    tb_familia ON tb_mun.cd_ibge = tb_familia.cd_ibge
+JOIN 
+    tb_domicilio ON tb_familia.id_familia = tb_domicilio.id_familia
+WHERE 
+    tb_domicilio.cod_local_domic_fam = 2 
+    AND tb_domicilio.cod_agua_canalizada_fam = 2
+    AND tb_domicilio.cod_iluminacao_domic_fam IN (4, 5, 6)
+GROUP BY 
+    tb_mun.nome_municipio, tb_mun.uf
+ORDER BY 
+    quantidade_pessoas_sem_energia_agua DESC, quantidade_domicilios_sem_energia_agua DESC;

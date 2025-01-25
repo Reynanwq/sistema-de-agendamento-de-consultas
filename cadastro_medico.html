@@ -204,6 +204,14 @@
       const API_URL = "http://localhost:8080";
 
       async function fetchMedicos() {
+        let tokenExists = localStorage.getItem('token');
+
+        if (!tokenExists) {
+            window.location.href = 'login.html';
+            alert('Sessão expirada. Faça o login novamente.')
+            return;
+        }
+
         try {
           const response = await fetch(`${API_URL}/medicos`, {
             method: "GET",
